@@ -13,8 +13,11 @@ with open('Config/MelbGrid.json', encoding="utf8") as melbGridConfigFile:
 # Inilialize the Melb Grid from the MelbGrid.json file data
 melbGrid = MelbGrid(melbGridConfig["features"])
 
+# Load the BigTwitter.json file and populate MelbGrid
+with open('TwitterFiles/BigTwitter.json', encoding="utf8") as tweetFile:
+
 # Load the SmallTwitter.json file and populate MelbGrid
-with open('TwitterFiles/SmallTwitter.json', encoding="utf8") as tweetFile:
+# with open('TwitterFiles/SmallTwitter.json', encoding="utf8") as tweetFile:
 
 # Load the TinyTwitter.json file and populate MelbGrid
 # with open('TwitterFiles/TinyTwitter.json', encoding="utf8") as tweetFile:
@@ -28,6 +31,9 @@ with open('TwitterFiles/SmallTwitter.json', encoding="utf8") as tweetFile:
 # Print the Tweets summary in each grid
 for grid in melbGrid.grids:
     print(melbGrid.grids[grid].getTweets())
+print("\n\n")
+print(melbGrid.others.getTweets())
+print("\n\n")
 
 # Print the Hashtags summary in each grid
 hashtagFrequencyLimiter = 5
