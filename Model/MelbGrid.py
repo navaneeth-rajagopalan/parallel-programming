@@ -12,6 +12,14 @@ class MelbGrid:
             properties = gridConfig["properties"]
             self.grids[properties["id"]] = Grid(properties["id"], properties["xmin"], properties["xmax"], properties["ymin"], properties["ymax"])
 
+    def consolidateMelbGrids(self, subMelbGrid):
+        """ consolidate the data from subMelbGrid and add the tweet count, hashtags in the root melb grid """
+        for gridId in self.grids:
+            # Consolidate the Tweet counts
+            self.grids[gridId].consolidateTweetCounter(subMelbGrid.grids[gridId].tweetCount)
+            # Consolidate the Hashtag summary
+            self.grids[gridId].consolidateHashTagInfo(subMelbGrid.grids[gridId].hashTags)
+
     def getTweetCoordinate(self, tweet):
         """ Process the tweet dictionary to get the coordinates from any of the 3 coordinates properties that may be available """
         tweetOriginCoordinates = []
@@ -57,7 +65,7 @@ class MelbGrid:
         # No proper tweet origin location details found
         return [-1, -1]
 
-    def getHashtags(self, tweet):
+    def getHashtagsFromTweet(self, tweet):
         """ Process the tweet text to fetch the hashtags in the text as an array """
         # Check the Doc section - Coordinates - doc.coordinates.coordinates
         if ("doc" in tweet) and (type(tweet["doc"]) == dict) and ("text" in tweet["doc"]) and (type(tweet["doc"]["text"]) == str):
@@ -85,7 +93,7 @@ class MelbGrid:
                         gridFound = True
                         self.grids[gridId].incrementTweetCounter()
                         # Get the hashtag and update the grid
-                        hashTags = self.getHashtags(tweet)
+                        hashTags = self.getHashtagsFromTweet(tweet)
                         if len(hashTags) > 0:
                             for hashTag in hashTags:
                                 self.grids[gridId].addHashTagInfo(hashTag)

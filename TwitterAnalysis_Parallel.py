@@ -10,7 +10,7 @@ comm = MPI.COMM_WORLD
 rank = comm.rank
 size = comm.size
 
-
+totalTweets = 0
 startTime = time.time()
 
 def processTwitterFile(mySummary, rank, cores):
@@ -74,6 +74,40 @@ processedList = comm.gather(mySummary, root = 0)
 
 if rank == 0:
     print("Received Data")
-    print(processedList)
+    for processedMelbGridSummary in processedList:
+        processedMelbGrid = processedMelbGridSummary.melbGrid
+        print("Summary from 1 core")
+        for grid in processedMelbGrid.grids:
+            print(processedMelbGrid.grids[grid].getTweets())
+        print("\n")
+        print(processedMelbGrid.others.getTweets())
+        print("\n")
+        totalTweets += processedMelbGridSummary.totalTweetsProcessed
+        print("Total tweets in file: " + str(processedMelbGridSummary.totalTweetsProcessed))
+        print("\n")
 
-print("\n\nExecution Time: " + str(endTime - startTime) + " s")
+        # Print the Hashtags summary in each grid
+        hashtagFrequencyLimiter = 5
+        for grid in melbGrid.grids:
+            print(melbGrid.grids[grid].getHashTags(hashtagFrequencyLimiter))
+
+        print("\nExecution Time: " + str(processedMelbGridSummary.executionTime) + " s")
+
+        melbGrid.consolidateMelbGrids(processedMelbGrid)
+    
+    for grid in melbGrid.grids:
+        print(melbGrid.grids[grid].getTweets())
+    print("\n")
+    print(melbGrid.others.getTweets())
+    print("\n")
+    print("Total tweets in file: " + str(totalTweets))
+    print("\n")
+
+    # Print the Hashtags summary in each grid
+    hashtagFrequencyLimiter = 5
+    for grid in melbGrid.grids:
+        print(melbGrid.grids[grid].getHashTags(hashtagFrequencyLimiter))
+
+    endTime = time.time()
+
+    print("\nExecution Time: " + str(endTime - startTime) + " s")

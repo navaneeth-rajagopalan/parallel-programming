@@ -37,3 +37,15 @@ class Grid:
         """ Get all the Hashtag frequency. Sorted in descending order. The results are limited by the limit parameter """
         sortedHashTags = sorted(self.hashTags.items(), key=operator.itemgetter(1), reverse=True)
         return self.id + ": " + str(tuple(sortedHashTags[:limit]))
+
+    def consolidateHashTagInfo(self, hashTagSummaryList):
+        """ Add hash tag information to the grid. If a new hash tag is encountered create a new property with hash tag and set count to 1. If hashtag exists in grid, increment counter by the count in the list """
+        for hashTag in hashTagSummaryList:
+            if hashTag in self.hashTags:
+                self.hashTags[hashTag] += hashTagSummaryList[hashTag]
+            else:
+                self.hashTags[hashTag] = 1
+
+    def consolidateTweetCounter(self, additionalTweetCount):
+        """ Increments the tweet counter for the grid by the number of additional tweets recorded """
+        self.tweetCount += additionalTweetCount
