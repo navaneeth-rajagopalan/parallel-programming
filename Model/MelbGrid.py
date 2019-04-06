@@ -15,7 +15,7 @@ class MelbGrid:
     def consolidateMelbGrids(self, subMelbGrid):
         """ consolidate the data from subMelbGrid and add the tweet count, hashtags in the root melb grid """
         self.others.consolidateTweetCounter(subMelbGrid.others.tweetCount)
-        self.grids = sorted(self.grids.items())
+        self.grids = dict(sorted(self.grids.items()))
         for gridId in self.grids:
             # Consolidate the Tweet counts
             self.grids[gridId].consolidateTweetCounter(subMelbGrid.grids[gridId].tweetCount)

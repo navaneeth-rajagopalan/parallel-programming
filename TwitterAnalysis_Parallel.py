@@ -74,7 +74,7 @@ if rank == 0:
     for processedMelbGridSummary in processedList:
         processedMelbGrid = processedMelbGridSummary.melbGrid
         print("Summary from 1 core")
-        processedMelbGrid.grids = sorted(processedMelbGrid.grids.items())
+        processedMelbGrid.grids = dict(sorted(processedMelbGrid.grids.items()))
         print(processedMelbGrid.grids)
         for grid in processedMelbGrid.grids:
             print(grid)
