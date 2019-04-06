@@ -6,6 +6,8 @@ import time
 
 startTime = time.time()
 
+totalTweets = 0
+
 # Load the MelbGrid json and parse the data to melbGrid
 with open('Config/MelbGrid.json', encoding="utf8") as melbGridConfigFile:
     melbGridConfig = json.load(melbGridConfigFile)
@@ -14,26 +16,35 @@ with open('Config/MelbGrid.json', encoding="utf8") as melbGridConfigFile:
 melbGrid = MelbGrid(melbGridConfig["features"])
 
 # Load the BigTwitter.json file and populate MelbGrid
-with open('TwitterFiles/BigTwitter.json', encoding="utf8") as tweetFile:
+with open('TwitterFiles/BigTwitter.json', encoding="utf8") as twitterFileHandle:
 
 # Load the SmallTwitter.json file and populate MelbGrid
-# with open('TwitterFiles/SmallTwitter.json', encoding="utf8") as tweetFile:
+# with open('TwitterFiles/SmallTwitter.json', encoding="utf8") as twitterFileHandle:
 
 # Load the TinyTwitter.json file and populate MelbGrid
-# with open('TwitterFiles/TinyTwitter.json', encoding="utf8") as tweetFile:
+# with open('TwitterFiles/TinyTwitter.json', encoding="utf8") as twitterFileHandle:
 
 # Load the Sample TestTwitter.json file and populate MelbGrid
-# with open('TwitterFiles/TestTwitter.json', encoding="utf8") as tweetFile:
-    tweets = json.load(tweetFile)
-    for tweet in tweets["rows"]:
-        melbGrid.processTweet(tweet)
+# with open('TwitterFiles/TestTwitter.json', encoding="utf8") as twitterFileHandle:
+    for lineNum, line in enumerate(twitterFileHandle):
+        if lineNum > 0:
+            if "coordinates" in str(line):
+                if str(line[-2]) == ',':
+                    line = line[:-2]
+                elif str(line[-3:-1]) == "]}":
+                    break
+                totalTweets += 1
+                tweetDetails = json.loads(line)
+                melbGrid.processTweet(tweetDetails)
 
 # Print the Tweets summary in each grid
 for grid in melbGrid.grids:
     print(melbGrid.grids[grid].getTweets())
-print("\n\n")
+print("\n")
 print(melbGrid.others.getTweets())
-print("\n\n")
+print("\n")
+print("Total tweets in file: " + str(totalTweets))
+print("\n")
 
 # Print the Hashtags summary in each grid
 hashtagFrequencyLimiter = 5

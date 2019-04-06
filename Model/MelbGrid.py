@@ -1,4 +1,6 @@
 from Grid import Grid
+import json
+import re
 
 class MelbGrid:
 
@@ -10,30 +12,84 @@ class MelbGrid:
             properties = gridConfig["properties"]
             self.grids[properties["id"]] = Grid(properties["id"], properties["xmin"], properties["xmax"], properties["ymin"], properties["ymax"])
 
+    def getTweetCoordinate(self, tweet):
+        """ Process the tweet dictionary to get the coordinates from any of the 3 coordinates properties that may be available """
+        tweetOriginCoordinates = []
+        # Check the Doc section - Coordinates - doc.coordinates.coordinates
+        if ("doc" in tweet) and (type(tweet["doc"]) == dict):
+            # doc exists in the tweet data and is of type dictionary. Can be iterated          
+            if ("coordinates" in tweet["doc"] and (type(tweet["doc"]["coordinates"]) == dict)):
+                # coordinates exists in tweets.doc and is of type dictionary. Can be iterated
+                if ("coordinates" in tweet["doc"]["coordinates"] and (type(tweet["doc"]["coordinates"]["coordinates"]) == list)):
+                    # Coordinates exist in tweet.doc.coordinates.coordinates and is of type list. Geo coordinates can be obtained from here
+                    tweetOriginCoordinates = tweet["doc"]["coordinates"]["coordinates"]
+                    if len(tweetOriginCoordinates) == 2:
+                        xPos = tweetOriginCoordinates[0]
+                        yPos = tweetOriginCoordinates[1]
+                        return [xPos, yPos]
+        
+        # Check the Doc section - Geo - Coordinates - doc.geo.coordinates
+        if ("doc" in tweet) and (type(tweet["doc"]) == dict):
+            # doc exists in the tweet data and is of type dictionary. Can be iterated
+            if ("geo" in tweet["doc"] and (type(tweet["doc"]["geo"]) == dict)):
+                # geo exists in tweets.doc and is of type dictionary. Can be iterated
+                if ("coordinates" in tweet["doc"]["geo"] and (type(tweet["doc"]["geo"]["coordinates"]) == list)):
+                    # Coordinates exist in tweet.doc.coordinates.coordinates and is of type list. Geo coordinates can be obtained from here
+                    tweetOriginCoordinates = tweet["doc"]["geo"]["coordinates"]
+                    if len(tweetOriginCoordinates) == 2:
+                        xPos = tweetOriginCoordinates[1]
+                        yPos = tweetOriginCoordinates[0]
+                        return [xPos, yPos]
+
+        # Check the Value section - Coordinate - value.geometry.coordinates
+        if ("value" in tweet) and (type(tweet["value"]) == dict):
+            # Value exists in the tweet data and is of type dictionary. Can be iterated
+            if ("geometry" in tweet["value"] and (type(tweet["value"]["geometry"]) == dict)):
+                # Geometry exists in tweets.value and is of type dictionary. Can be iterated
+                if ("coordinates" in tweet["value"]["geometry"] and (type(tweet["value"]["geometry"]["coordinates"]) == list)):
+                    # Coordinates exist in tweet.value.geometry.coordinates and is of type list. Geo coordinates can be obtained from here
+                    tweetOriginCoordinates = tweet["value"]["geometry"]["coordinates"]
+                    if len(tweetOriginCoordinates) == 2:
+                        xPos = tweetOriginCoordinates[0]
+                        yPos = tweetOriginCoordinates[1]
+                        return [xPos, yPos]
+        
+        # No proper tweet origin location details found
+        return [-1, -1]
+
+    def getHashtags(self, tweet):
+        """ Process the tweet text to fetch the hashtags in the text as an array """
+        # Check the Doc section - Coordinates - doc.coordinates.coordinates
+        if ("doc" in tweet) and (type(tweet["doc"]) == dict) and ("text" in tweet["doc"]) and (type(tweet["doc"]["text"]) == str):
+            tweetText = tweet["doc"]["text"]
+            # https://www.hashtags.org/platforms/twitter/what-characters-can-a-hashtag-include/
+            hashtags = re.findall(r"#(\w+)", tweetText)
+            return hashtags
+        return []
+
     def processTweet(self, tweet):
         """ Identify the grid from where the tweet has originated and update the grid information. Identify the hashtags associated with the tweet and update the respective grid's hashtag data """
-        # Get the Tweet origin coordinates
-        #TODO Check if Geolocation data is available
-        coordinates = tweet["value"]["geometry"]["coordinates"]
-        xPos = coordinates[0]
-        yPos = coordinates[1]
-
         gridFound = False # Used to sanity check the process
-
-        for gridId in self.grids:
-            # Check Latitude
-            if (xPos >= self.grids[gridId].xmin and xPos <= self.grids[gridId].xmax):
-                # Check Longitude
-                if (yPos >= self.grids[gridId].ymin and yPos <= self.grids[gridId].ymax):
-                    # Grid Found
-                    gridFound = True
-                    self.grids[gridId].incrementTweetCounter()
-                    # Get the hashtag and update the grid
-                    hashTags = tweet["doc"]["entities"]["hashtags"]
-                    if len(hashTags) > 0:
-                        for hashTag in hashTags:
-                            self.grids[gridId].addHashTagInfo(hashTag["text"])
-                    break
-        
+        # Get the Tweet origin coordinates
+        tweetOriginCoordinates = self.getTweetCoordinate(tweet)
+        if tweetOriginCoordinates[0] != -1 and tweetOriginCoordinates != -1:
+            xPos = tweetOriginCoordinates[0]
+            yPos = tweetOriginCoordinates[1]
+            
+            for gridId in self.grids:
+                # Check Latitude
+                if (xPos >= self.grids[gridId].xmin and xPos <= self.grids[gridId].xmax):
+                    # Check Longitude
+                    if (yPos >= self.grids[gridId].ymin and yPos <= self.grids[gridId].ymax):
+                        # Grid Found
+                        gridFound = True
+                        self.grids[gridId].incrementTweetCounter()
+                        # Get the hashtag and update the grid
+                        hashTags = self.getHashtags(tweet)
+                        if len(hashTags) > 0:
+                            for hashTag in hashTags:
+                                self.grids[gridId].addHashTagInfo(hashTag)
+                        break
+            
         if not gridFound:
             self.others.incrementTweetCounter()
