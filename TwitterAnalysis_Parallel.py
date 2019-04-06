@@ -62,7 +62,6 @@ else:
 mySummary = comm.scatter(summaryList, root = 0)
 
 print("After Scatter")
-print(mySummary)
 
 processTwitterFile(mySummary, rank, size)
 
@@ -77,6 +76,7 @@ if rank == 0:
     for processedMelbGridSummary in processedList:
         processedMelbGrid = processedMelbGridSummary.melbGrid
         print("Summary from 1 core")
+        processedMelbGrid.grids = sorted(processedMelbGrid.grids)
         for grid in processedMelbGrid.grids:
             print(processedMelbGrid.grids[grid].getTweets())
         print("\n")
