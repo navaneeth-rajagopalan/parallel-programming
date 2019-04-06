@@ -75,7 +75,9 @@ if rank == 0:
         processedMelbGrid = processedMelbGridSummary.melbGrid
         print("Summary from 1 core")
         processedMelbGrid.grids = sorted(processedMelbGrid.grids.items())
+        print(processedMelbGrid.grids)
         for grid in processedMelbGrid.grids:
+            print(grid)
             print(processedMelbGrid.grids[grid].getTweets())
         print("\n")
         print(processedMelbGrid.others.getTweets())
