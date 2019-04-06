@@ -37,10 +37,6 @@ def processTwitterFile(mySummary, rank, cores):
                         tweetDetails = json.loads(line)
                         mySummary.melbGrid.processTweet(tweetDetails)
 
-
-# Create an empty list of size = number of cores
-summaryList = [None] * comm.size
-
 # Load the MelbGrid json and parse the data to melbGrid
 with open('Config/MelbGrid.json', encoding="utf8") as melbGridConfigFile:
     melbGridConfig = json.load(melbGridConfigFile)
@@ -62,6 +58,7 @@ mySummary = comm.scatter(summaryList, root = 0)
 print("After Scatter")
 
 processTwitterFile(mySummary, rank, size)
+comm.Barrier()
 
 endTime = time.time()
 
