@@ -21,10 +21,10 @@ def processTwitterFile(mySummary, rank, cores):
     #with open('TwitterFiles/SmallTwitter.json', encoding="utf8") as twitterFileHandle:
 
     # Load the TinyTwitter.json file and populate MelbGrid
-    with open('TwitterFiles/TinyTwitter.json', encoding="utf8") as twitterFileHandle:
+    # with open('TwitterFiles/TinyTwitter.json', encoding="utf8") as twitterFileHandle:
 
-    # Load the Sample TestTwitter.json file and populate MelbGrid
-    #with open('TwitterFiles/TestTwitter.json', encoding="utf8") as twitterFileHandle:
+    # Load the SampleBigTwitter.json file and populate MelbGrid
+    with open('TwitterFiles/SampleBigTwitter.json', encoding="utf8") as twitterFileHandle:
         for lineNum, line in enumerate(twitterFileHandle):
             if lineNum > 0:
                 if lineNum % cores == rank:
@@ -92,6 +92,8 @@ if rank == 0:
             print(melbGrid.grids[grid].getHashTags(hashtagFrequencyLimiter))
 
         print("\nExecution Time: " + str(processedMelbGridSummary.executionTime) + " s")
+
+        print("\n########################################################################################################################################################\n")
 
         melbGrid.consolidateMelbGrids(processedMelbGrid)
     
