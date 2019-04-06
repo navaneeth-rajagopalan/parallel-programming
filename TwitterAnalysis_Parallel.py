@@ -54,8 +54,6 @@ if rank == 0:
     summaryList = []
     for i in range(size):
         summaryList.append(Summary(melbGrid))
-    print("Scattering list: ")
-    print(summaryList)
 else:
     summaryList = None
 
@@ -76,7 +74,7 @@ if rank == 0:
     for processedMelbGridSummary in processedList:
         processedMelbGrid = processedMelbGridSummary.melbGrid
         print("Summary from 1 core")
-        processedMelbGrid.grids = sorted(processedMelbGrid.grids)
+        processedMelbGrid.grids = sorted(processedMelbGrid.grids.items())
         for grid in processedMelbGrid.grids:
             print(processedMelbGrid.grids[grid].getTweets())
         print("\n")
