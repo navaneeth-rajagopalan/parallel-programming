@@ -9,6 +9,7 @@ with open('TwitterFiles/SmallTwitter.json', encoding="utf8") as f:
 
 count = {}
 
+count["total.rows"] = len(data["rows"])
 count["value"] = 0
 count["value_geometry_coordinates"] = 0
 count["hashtags"] = 0
