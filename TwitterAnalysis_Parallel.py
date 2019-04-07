@@ -15,13 +15,13 @@ startTime = time.time()
 
 def processTwitterFile(mySummary, rank, cores):
     # Load the BigTwitter.json file and populate MelbGrid
-    with open('TwitterFiles/bigTwitter.json', encoding="utf8") as twitterFileHandle:
+    #with open('TwitterFiles/bigTwitter.json', encoding="utf8") as twitterFileHandle:
 
     # Load the SmallTwitter.json file and populate MelbGrid
     #with open('TwitterFiles/smallTwitter.json', encoding="utf8") as twitterFileHandle:
 
     # Load the TinyTwitter.json file and populate MelbGrid
-    # with open('TwitterFiles/tinyTwitter.json', encoding="utf8") as twitterFileHandle:
+     with open('TwitterFiles/tinyTwitter.json', encoding="utf8") as twitterFileHandle:
 
     # Load the SampleBigTwitter.json file and populate MelbGrid
     # with open('TwitterFiles/SampleBigTwitter.json', encoding="utf8") as twitterFileHandle:
@@ -64,6 +64,7 @@ endTime = time.time()
 
 mySummary.executionTime = endTime - startTime
 
+mySummary.melbGrid.grids = dict(sorted(mySummary.melbGrid.grids.items()))
 processedList = comm.gather(mySummary, root = 0)
 
 if rank == 0:
@@ -71,7 +72,12 @@ if rank == 0:
     for processedMelbGridSummary in processedList:
         processedMelbGrid = processedMelbGridSummary.melbGrid
         print("Summary from 1 core")
+        print("Before Sort")
+        for grid in processedMelbGrid.grids:
+            print(grid)
+        print("After Sort")
         for grid in dict(sorted(processedMelbGrid.grids.items())):
+            print(grid)
             print(processedMelbGrid.grids[grid].getTweets())
         print("\n")
         print(processedMelbGrid.others.getTweets())
