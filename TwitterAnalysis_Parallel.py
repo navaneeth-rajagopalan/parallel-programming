@@ -13,6 +13,8 @@ size = comm.size
 totalTweets = 0
 startTime = time.time()
 
+melbGridConfig = None
+
 def processTwitterFile(mySummary, rank, cores):
     # Load the BigTwitter.json file and populate MelbGrid
     #with open('TwitterFiles/bigTwitter.json', encoding="utf8") as twitterFileHandle:
@@ -21,10 +23,10 @@ def processTwitterFile(mySummary, rank, cores):
     #with open('TwitterFiles/smallTwitter.json', encoding="utf8") as twitterFileHandle:
 
     # Load the TinyTwitter.json file and populate MelbGrid
-     with open('TwitterFiles/tinyTwitter.json', encoding="utf8") as twitterFileHandle:
+    with open('TwitterFiles/tinyTwitter.json', encoding="utf8") as twitterFileHandle:
 
     # Load the SampleBigTwitter.json file and populate MelbGrid
-    # with open('TwitterFiles/SampleBigTwitter.json', encoding="utf8") as twitterFileHandle:
+    #with open('TwitterFiles/SampleBigTwitter.json', encoding="utf8") as twitterFileHandle:
         for lineNum, line in enumerate(twitterFileHandle):
             if lineNum > 0:
                 if lineNum % cores == rank:
@@ -36,46 +38,39 @@ def processTwitterFile(mySummary, rank, cores):
                         mySummary.totalTweetsProcessed += 1
                         tweetDetails = json.loads(line)
                         mySummary.melbGrid.processTweet(tweetDetails)
-
-# Load the MelbGrid json and parse the data to melbGrid
-with open('Config/MelbGrid.json', encoding="utf8") as melbGridConfigFile:
-    melbGridConfig = json.load(melbGridConfigFile)
-
-# Inilialize the Melb Grid from the MelbGrid.json file data
-melbGrid = MelbGrid(melbGridConfig["features"])
-finalMelbGrid = MelbGrid(melbGridConfig["features"])
-
+    
+    return mySummary
 
 if rank == 0:
+    # Load the MelbGrid json and parse the data to melbGrid
+    with open('Config/MelbGrid.json', encoding="utf8") as melbGridConfigFile:
+        melbGridConfig = json.load(melbGridConfigFile)
     summaryList = []
     for i in range(size):
-        summaryList.append(Summary(melbGrid))
+        # Create the array with the data strucutre to populate the information by processing the file
+        # Inilialize the Melb Grid from the MelbGrid.json file data
+        summaryList.append(Summary(MelbGrid(melbGridConfig["features"])))
 else:
     summaryList = None
 
 mySummary = comm.scatter(summaryList, root = 0)
 
-print("After Scatter")
+print("Data place holders scattered")
 
-processTwitterFile(mySummary, rank, size)
-comm.Barrier()
+mySummary = processTwitterFile(mySummary, rank, size)
 
 endTime = time.time()
 
 mySummary.executionTime = endTime - startTime
 
-mySummary.melbGrid.grids = dict(sorted(mySummary.melbGrid.grids.items()))
 processedList = comm.gather(mySummary, root = 0)
 
 if rank == 0:
     print("Received Data")
+    finalMelbGrid = MelbGrid(melbGridConfig["features"])
     for processedMelbGridSummary in processedList:
         processedMelbGrid = processedMelbGridSummary.melbGrid
         print("Summary from 1 core")
-        print("Before Sort")
-        for grid in processedMelbGrid.grids:
-            print(grid)
-        print("After Sort")
         for grid in dict(sorted(processedMelbGrid.grids.items())):
             print(grid)
             print(processedMelbGrid.grids[grid].getTweets())
@@ -89,26 +84,26 @@ if rank == 0:
         # Print the Hashtags summary in each grid
         hashtagFrequencyLimiter = 5
         for grid in dict(sorted(processedMelbGrid.grids.items())):
-            print(melbGrid.grids[grid].getHashTags(hashtagFrequencyLimiter))
+            print(processedMelbGrid.grids[grid].getHashTags(hashtagFrequencyLimiter))
 
         print("\nExecution Time: " + str(processedMelbGridSummary.executionTime) + " s")
 
         print("\n########################################################################################################################################################\n")
 
-        melbGrid.consolidateMelbGrids(processedMelbGrid)
+        finalMelbGrid.consolidateMelbGrids(processedMelbGrid)
     
-    for grid in dict(sorted(melbGrid.grids.items())):
-        print(melbGrid.grids[grid].getTweets())
+    for grid in dict(sorted(finalMelbGrid.grids.items())):
+        print(finalMelbGrid.grids[grid].getTweets())
     print("\n")
-    print(melbGrid.others.getTweets())
+    print(finalMelbGrid.others.getTweets())
     print("\n")
     print("Total tweets in file: " + str(totalTweets))
     print("\n")
 
     # Print the Hashtags summary in each grid
     hashtagFrequencyLimiter = 5
-    for grid in dict(sorted(melbGrid.grids.items())):
-        print(melbGrid.grids[grid].getHashTags(hashtagFrequencyLimiter))
+    for grid in dict(sorted(finalMelbGrid.grids.items())):
+        print(finalMelbGrid.grids[grid].getHashTags(hashtagFrequencyLimiter))
 
     endTime = time.time()
 
