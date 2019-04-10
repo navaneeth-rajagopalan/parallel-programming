@@ -16,13 +16,13 @@ with open('Config/MelbGrid.json', encoding="utf8") as melbGridConfigFile:
 melbGrid = MelbGrid(melbGridConfig["features"])
 
 # Load the BigTwitter.json file and populate MelbGrid
-with open('TwitterFiles/BigTwitter.json', encoding="utf8") as twitterFileHandle:
+# with open('TwitterFiles/BigTwitter.json', encoding="utf8") as twitterFileHandle:
 
 # Load the SmallTwitter.json file and populate MelbGrid
 # with open('TwitterFiles/SmallTwitter.json', encoding="utf8") as twitterFileHandle:
 
 # Load the TinyTwitter.json file and populate MelbGrid
-# with open('TwitterFiles/TinyTwitter.json', encoding="utf8") as twitterFileHandle:
+with open('TwitterFiles/TinyTwitter.json', encoding="utf8") as twitterFileHandle:
 
 # Load the Sample TestTwitter.json file and populate MelbGrid
 # with open('TwitterFiles/TestTwitter.json', encoding="utf8") as twitterFileHandle:
@@ -39,7 +39,7 @@ with open('TwitterFiles/BigTwitter.json', encoding="utf8") as twitterFileHandle:
 
 # Print the Tweets summary in each grid
 for grid in melbGrid.grids:
-    print(melbGrid.grids[grid].getTweets())
+    print(grid.getTweets())
 print("\n")
 print(melbGrid.others.getTweets())
 print("\n")
@@ -49,7 +49,7 @@ print("\n")
 # Print the Hashtags summary in each grid
 hashtagFrequencyLimiter = 5
 for grid in melbGrid.grids:
-    print(melbGrid.grids[grid].getHashTags(hashtagFrequencyLimiter))
+    print(grid.getHashTags(hashtagFrequencyLimiter))
 
 endTime = time.time()
 

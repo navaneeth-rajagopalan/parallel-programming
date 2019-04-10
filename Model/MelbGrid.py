@@ -6,11 +6,20 @@ class MelbGrid:
 
     def __init__(self, gridConfigs):
         """ Initialize the grid information for each of the Grid in Melbourne City. The grid configuration is an extract of the MelbGrid.json file containing the Grid ID, xmin, xmax, ymin and ymax information """
-        self.grids = {}
+        self.grids = []
         self.others = Grid("Others", 0, 0, 0, 0)
         for gridConfig in gridConfigs:
             properties = gridConfig["properties"]
-            self.grids[properties["id"]] = Grid(properties["id"], properties["xmin"], properties["xmax"], properties["ymin"], properties["ymax"])
+            self.grids.append(Grid(properties["id"], properties["xmin"], properties["xmax"], properties["ymin"], properties["ymax"]))
+
+    def consolidateMelbGrids(self, subMelbGrid):
+        """ consolidate the data from subMelbGrid and add the tweet count, hashtags in the root melb grid """
+        self.others.consolidateTweetCounter(subMelbGrid.others.tweetCount)
+        for index, grid in enumerate(self.grids):
+            # Consolidate the Tweet counts
+            grid.consolidateTweetCounter(subMelbGrid.grids[index].tweetCount)
+            # Consolidate the Hashtag summary
+            grid.consolidateHashTagInfo(subMelbGrid.grids[index].hashTags)
 
     def getTweetCoordinate(self, tweet):
         """ Process the tweet dictionary to get the coordinates from any of the 3 coordinates properties that may be available """
@@ -57,13 +66,13 @@ class MelbGrid:
         # No proper tweet origin location details found
         return [-1, -1]
 
-    def getHashtags(self, tweet):
+    def getHashtagsFromTweet(self, tweet):
         """ Process the tweet text to fetch the hashtags in the text as an array """
         # Check the Doc section - Coordinates - doc.coordinates.coordinates
         if ("doc" in tweet) and (type(tweet["doc"]) == dict) and ("text" in tweet["doc"]) and (type(tweet["doc"]["text"]) == str):
             tweetText = tweet["doc"]["text"]
             # https://www.hashtags.org/platforms/twitter/what-characters-can-a-hashtag-include/
-            hashtags = re.findall(r"#(\w+)", tweetText)
+            hashtags = re.findall(r" #(\w+)", " " + tweetText) # Prepend a blank white space before the tweet text to filter " #Hashtag" scenarios as hashtags
             return hashtags
         return []
 
@@ -72,23 +81,23 @@ class MelbGrid:
         gridFound = False # Used to sanity check the process
         # Get the Tweet origin coordinates
         tweetOriginCoordinates = self.getTweetCoordinate(tweet)
-        if tweetOriginCoordinates[0] != -1 and tweetOriginCoordinates != -1:
+        if tweetOriginCoordinates[0] != -1 and tweetOriginCoordinates[1] != -1:
             xPos = tweetOriginCoordinates[0]
             yPos = tweetOriginCoordinates[1]
             
-            for gridId in self.grids:
+            for grid in self.grids:
                 # Check Latitude
-                if (xPos >= self.grids[gridId].xmin and xPos <= self.grids[gridId].xmax):
+                if (xPos >= grid.xmin and xPos <= grid.xmax):
                     # Check Longitude
-                    if (yPos >= self.grids[gridId].ymin and yPos <= self.grids[gridId].ymax):
+                    if (yPos >= grid.ymin and yPos <= grid.ymax):
                         # Grid Found
                         gridFound = True
-                        self.grids[gridId].incrementTweetCounter()
+                        grid.incrementTweetCounter()
                         # Get the hashtag and update the grid
-                        hashTags = self.getHashtags(tweet)
+                        hashTags = self.getHashtagsFromTweet(tweet)
                         if len(hashTags) > 0:
                             for hashTag in hashTags:
-                                self.grids[gridId].addHashTagInfo(hashTag)
+                                grid.addHashTagInfo(hashTag)
                         break
             
         if not gridFound:
