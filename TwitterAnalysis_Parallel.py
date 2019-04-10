@@ -71,9 +71,8 @@ if rank == 0:
     for processedMelbGridSummary in processedList:
         processedMelbGrid = processedMelbGridSummary.melbGrid
         print("Summary from 1 core")
-        for grid in dict(sorted(processedMelbGrid.grids.items())):
-            print(grid)
-            print(processedMelbGrid.grids[grid].getTweets())
+        for grid in processedMelbGrid.grids:
+            print(grid.getTweets())
         print("\n")
         print(processedMelbGrid.others.getTweets())
         print("\n")
@@ -83,8 +82,8 @@ if rank == 0:
 
         # Print the Hashtags summary in each grid
         hashtagFrequencyLimiter = 5
-        for grid in dict(sorted(processedMelbGrid.grids.items())):
-            print(processedMelbGrid.grids[grid].getHashTags(hashtagFrequencyLimiter))
+        for grid in processedMelbGrid.grids:
+            print(grid.getHashTags(hashtagFrequencyLimiter))
 
         print("\nExecution Time: " + str(processedMelbGridSummary.executionTime) + " s")
 
@@ -92,8 +91,8 @@ if rank == 0:
 
         finalMelbGrid.consolidateMelbGrids(processedMelbGrid)
     
-    for grid in dict(sorted(finalMelbGrid.grids.items())):
-        print(finalMelbGrid.grids[grid].getTweets())
+    for finalGrid in finalMelbGrid.grids:
+        print(finalGrid.getTweets())
     print("\n")
     print(finalMelbGrid.others.getTweets())
     print("\n")
@@ -102,8 +101,8 @@ if rank == 0:
 
     # Print the Hashtags summary in each grid
     hashtagFrequencyLimiter = 5
-    for grid in dict(sorted(finalMelbGrid.grids.items())):
-        print(finalMelbGrid.grids[grid].getHashTags(hashtagFrequencyLimiter))
+    for finalGrid in finalMelbGrid.grids:
+        print(finalGrid.getHashTags(hashtagFrequencyLimiter))
 
     endTime = time.time()
 
