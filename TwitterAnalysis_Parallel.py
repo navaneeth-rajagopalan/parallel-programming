@@ -94,6 +94,7 @@ if rank == 0:
 
         finalMelbGrid.consolidateMelbGrids(processedMelbGrid)
     
+    finalMelbGrid.sortGridByTweetCountDesc()
     for finalGrid in finalMelbGrid.grids:
         print(finalGrid.getTweets())
     print("\n")

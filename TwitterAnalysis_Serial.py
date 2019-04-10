@@ -38,6 +38,7 @@ with open('TwitterFiles/TinyTwitter.json', encoding="utf8") as twitterFileHandle
                 melbGrid.processTweet(tweetDetails)
 
 # Print the Tweets summary in each grid
+melbGrid.sortGridByTweetCountDesc()
 for grid in melbGrid.grids:
     print(grid.getTweets())
 print("\n")

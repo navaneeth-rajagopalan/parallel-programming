@@ -102,3 +102,8 @@ class MelbGrid:
             
         if not gridFound:
             self.others.incrementTweetCounter()
+    
+    def sortGridByTweetCountDesc(self):
+        """ Sort the Melb Grid based on the total tweets recorded in each grid in a descending order """
+        sortedGrid = sorted(self.grids, key=lambda x: x.tweetCount, reverse = True)
+        self.grids = sortedGrid
