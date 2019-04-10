@@ -10,6 +10,8 @@ comm = MPI.COMM_WORLD
 rank = comm.rank
 size = comm.size
 
+hashtagFrequencyLimiter = 5
+
 totalTweets = 0
 startTime = time.time()
 
@@ -38,6 +40,7 @@ def processTwitterFile(mySummary, rank, cores):
                         mySummary.totalTweetsProcessed += 1
                         tweetDetails = json.loads(line)
                         mySummary.melbGrid.processTweet(tweetDetails)
+                        mySummary.rank = rank
     
     return mySummary
 
@@ -70,7 +73,7 @@ if rank == 0:
     finalMelbGrid = MelbGrid(melbGridConfig["features"])
     for processedMelbGridSummary in processedList:
         processedMelbGrid = processedMelbGridSummary.melbGrid
-        print("Summary from 1 core")
+        print("Summary from processor #" + str(processedMelbGridSummary.rank))
         for grid in processedMelbGrid.grids:
             print(grid.getTweets())
         print("\n")
@@ -78,12 +81,12 @@ if rank == 0:
         print("\n")
         totalTweets += processedMelbGridSummary.totalTweetsProcessed
         print("Total tweets in file: " + str(processedMelbGridSummary.totalTweetsProcessed))
-        print("\n")
+        # print("\n")
 
-        # Print the Hashtags summary in each grid
-        hashtagFrequencyLimiter = 5
-        for grid in processedMelbGrid.grids:
-            print(grid.getHashTags(hashtagFrequencyLimiter))
+        # # Print the Hashtags summary in each grid
+        # hashtagFrequencyLimiter = 5
+        # for grid in processedMelbGrid.grids:
+        #     print(grid.getHashTags(hashtagFrequencyLimiter))
 
         print("\nExecution Time: " + str(processedMelbGridSummary.executionTime) + " s")
 
@@ -100,7 +103,6 @@ if rank == 0:
     print("\n")
 
     # Print the Hashtags summary in each grid
-    hashtagFrequencyLimiter = 5
     for finalGrid in finalMelbGrid.grids:
         print(finalGrid.getHashTags(hashtagFrequencyLimiter))
 

@@ -72,7 +72,7 @@ class MelbGrid:
         if ("doc" in tweet) and (type(tweet["doc"]) == dict) and ("text" in tweet["doc"]) and (type(tweet["doc"]["text"]) == str):
             tweetText = tweet["doc"]["text"]
             # https://www.hashtags.org/platforms/twitter/what-characters-can-a-hashtag-include/
-            hashtags = re.findall(r" #(\w+)", tweetText)
+            hashtags = re.findall(r" #(\w+)", " " + tweetText) # Prepend a blank white space before the tweet text to filter " #Hashtag" scenarios as hashtags
             return hashtags
         return []
 

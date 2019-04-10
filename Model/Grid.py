@@ -19,7 +19,7 @@ class Grid:
     
     def addHashTagInfo(self, hashTag):
         """ Add hash tag information to the grid. If a new hash tag is encountered create a new property with hash tag and set count to 1. If hashtag exists in grid, increment counter by 1 """
-        hashTag = hashTag.lower()
+        hashTag = "#" + hashTag.lower()
         if hashTag in self.hashTags:
             self.hashTags[hashTag] += 1
         else:
@@ -36,24 +36,27 @@ class Grid:
     def getHashTags(self, limit):
         """ Get all the Hashtag frequency. Sorted in descending order. The results are limited by the limit parameter """
         sortedHashTags = sorted(self.hashTags.items(), key=operator.itemgetter(1), reverse=True)
-        return self.id + ": " + str(tuple(sortedHashTags[:limit]))
+        topFiveHashtags = []
+        counter = 0
+        totalHashtagsRecorded = len(sortedHashTags)
+        for index in range(limit):
+            if counter >= totalHashtagsRecorded:
+                break
+            topFiveHashtags.append(sortedHashTags[index])
+            counter += 1            
+        while counter < totalHashtagsRecorded and topFiveHashtags[-1][1] == sortedHashTags[counter][1]: # Add the Hashtags that are as frequent as the 5th most frequent hashtag and check to not run out of array index
+            topFiveHashtags.append(sortedHashTags[counter])
+            counter += 1
+        return self.id + ": " + str(tuple(topFiveHashtags[:]))
 
     def consolidateHashTagInfo(self, hashTagSummaryList):
         """ Add hash tag information to the grid. If a new hash tag is encountered create a new property with hash tag and set count to 1. If hashtag exists in grid, increment counter by the count in the list """
         for hashTag in hashTagSummaryList:
             hashTag = hashTag.lower()
-            if hashTag == "melbourne":
-                print("TEST: ")
-                print(hashTag)
-                print(hashTag in self.hashTags)
-                if hashTag in self.hashTags:
-                    print(self.hashTags[hashTag])
             if hashTag in self.hashTags:
                 self.hashTags[hashTag] += hashTagSummaryList[hashTag]
             else:
                 self.hashTags[hashTag] = hashTagSummaryList[hashTag]
-            if hashTag == "melbourne":
-                print(self.hashTags[hashTag])
 
     def consolidateTweetCounter(self, additionalTweetCount):
         """ Increments the tweet counter for the grid by the number of additional tweets recorded """

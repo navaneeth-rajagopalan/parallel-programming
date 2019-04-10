@@ -8,3 +8,4 @@ class Summary:
         self.melbGrid = melbGrid
         self.executionTime = 0
         self.totalTweetsProcessed = 0
+        self.rank = -1
