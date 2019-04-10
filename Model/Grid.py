@@ -40,15 +40,19 @@ class Grid:
 
     def consolidateHashTagInfo(self, hashTagSummaryList):
         print("TEST: ")
-        print(hashTagSummaryList)
         """ Add hash tag information to the grid. If a new hash tag is encountered create a new property with hash tag and set count to 1. If hashtag exists in grid, increment counter by the count in the list """
         for hashTag in hashTagSummaryList:
             hashTag = hashTag.lower()
-            print(hashTag)
+            if hashTag == "melbourne":
+                print(hashTag)
+                print(hashTag in self.hashTags)
+                print(self.hashTags[hashTag])
             if hashTag in self.hashTags:
                 self.hashTags[hashTag] += hashTagSummaryList[hashTag]
             else:
                 self.hashTags[hashTag] = 1
+            if hashTag == "melbourne":
+                print(self.hashTags[hashTag])
 
     def consolidateTweetCounter(self, additionalTweetCount):
         """ Increments the tweet counter for the grid by the number of additional tweets recorded """
