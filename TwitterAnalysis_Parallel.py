@@ -19,13 +19,13 @@ melbGridConfig = None
 
 def processTwitterFile(mySummary, rank, cores):
     # Load the BigTwitter.json file and populate MelbGrid
-    #with open('TwitterFiles/bigTwitter.json', encoding="utf8") as twitterFileHandle:
+    with open('TwitterFiles/bigTwitter.json', encoding="utf8") as twitterFileHandle:
 
     # Load the SmallTwitter.json file and populate MelbGrid
     #with open('TwitterFiles/smallTwitter.json', encoding="utf8") as twitterFileHandle:
 
     # Load the TinyTwitter.json file and populate MelbGrid
-    with open('TwitterFiles/tinyTwitter.json', encoding="utf8") as twitterFileHandle:
+    #with open('TwitterFiles/tinyTwitter.json', encoding="utf8") as twitterFileHandle:
 
     # Load the SampleBigTwitter.json file and populate MelbGrid
     #with open('TwitterFiles/SampleBigTwitter.json', encoding="utf8") as twitterFileHandle:
@@ -73,7 +73,7 @@ if rank == 0:
     finalMelbGrid = MelbGrid(melbGridConfig["features"])
     for processedMelbGridSummary in processedList:
         processedMelbGrid = processedMelbGridSummary.melbGrid
-        print("Summary from processor #" + str(processedMelbGridSummary.rank))
+        print("\nSummary from processor #" + str(processedMelbGridSummary.rank))
         for grid in processedMelbGrid.grids:
             print(grid.getTweets())
         print("\n")
