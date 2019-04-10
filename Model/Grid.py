@@ -51,7 +51,7 @@ class Grid:
             if hashTag in self.hashTags:
                 self.hashTags[hashTag] += hashTagSummaryList[hashTag]
             else:
-                self.hashTags[hashTag] = 1
+                self.hashTags[hashTag] = hashTagSummaryList[hashTag]
             if hashTag == "melbourne":
                 print(self.hashTags[hashTag])
 
