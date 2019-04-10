@@ -19,8 +19,6 @@ class MelbGrid:
             # Consolidate the Tweet counts
             grid.consolidateTweetCounter(subMelbGrid.grids[index].tweetCount)
             # Consolidate the Hashtag summary
-            print("TEST: ")
-            print(subMelbGrid.grids[index].hashTags)
             grid.consolidateHashTagInfo(subMelbGrid.grids[index].hashTags)
 
     def getTweetCoordinate(self, tweet):
