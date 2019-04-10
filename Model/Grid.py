@@ -39,14 +39,15 @@ class Grid:
         return self.id + ": " + str(tuple(sortedHashTags[:limit]))
 
     def consolidateHashTagInfo(self, hashTagSummaryList):
-        print("TEST: ")
         """ Add hash tag information to the grid. If a new hash tag is encountered create a new property with hash tag and set count to 1. If hashtag exists in grid, increment counter by the count in the list """
         for hashTag in hashTagSummaryList:
             hashTag = hashTag.lower()
             if hashTag == "melbourne":
+                print("TEST: ")
                 print(hashTag)
                 print(hashTag in self.hashTags)
-                print(self.hashTags[hashTag])
+                if hashTag in self.hashTags:
+                    print(self.hashTags[hashTag])
             if hashTag in self.hashTags:
                 self.hashTags[hashTag] += hashTagSummaryList[hashTag]
             else:
