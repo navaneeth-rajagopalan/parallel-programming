@@ -1,0 +1,90 @@
+After Scatter
+Received Data
+Summary from 1 core
+A4: 310 posts
+A1: 2533 posts
+A2: 4165 posts
+C2: 145170 posts
+B1: 16507 posts
+D3: 13388 posts
+B3: 26637 posts
+B4: 5450 posts
+D4: 14497 posts
+C1: 8427 posts
+C3: 53299 posts
+A3: 5019 posts
+D5: 3248 posts
+C4: 19696 posts
+B2: 79489 posts
+C5: 4109 posts
+
+
+OTHERS: 2098056 posts
+
+
+Total tweets in file: 2500000
+
+
+A4: ()
+A1: ()
+A2: ()
+C2: ()
+B1: ()
+D3: ()
+B3: ()
+B4: ()
+D4: ()
+C1: ()
+C3: ()
+A3: ()
+D5: ()
+C4: ()
+B2: ()
+C5: ()
+
+Execution Time: 657.7259929180145 s
+
+########################################################################################################################################################
+
+A4: 310 posts
+A1: 2533 posts
+A2: 4165 posts
+C2: 145170 posts
+B1: 16507 posts
+D3: 13388 posts
+B3: 26637 posts
+B4: 5450 posts
+D4: 14497 posts
+C1: 8427 posts
+C3: 53299 posts
+A3: 5019 posts
+D5: 3248 posts
+C4: 19696 posts
+B2: 79489 posts
+C5: 4109 posts
+
+
+OTHERS: 2098056 posts
+
+
+Total tweets in file: 2500000
+
+
+A4: (('#springst', 1), ('#other', 1), ('#labiam', 1), ('#melbourne', 1), ('#herbalife', 1))
+A1: (('#luzzaaaah', 1), ('#bbderrick', 1), ('#bittameat', 1), ('#quarantinethem', 1), ('#jumperincase', 1))
+A2: (('#bali', 1), ('#films', 1), ('#talentagency', 1), ('#mtmacedon', 1), ('#taxibookingservice', 1))
+C2: (('#taspappas', 1), ('#rtj', 1), ('#endocrine', 1), ('#bartenuramoscato', 1), ('#parkbench', 1))
+B1: (('#vacay', 1), ('#gamergate_', 1), ('#á', 1), ('#halftimerevup', 1), ('#husky', 1))
+D3: (('#interiordesign', 1), ('#melbourne5trips', 1), ('#ridingwithmates', 1), ('#bluemichaelisback', 1), ('#fifa', 1))
+B3: (('#alp', 1), ('#fifa', 1), ('#xfactorau', 1), ('#redlinebmx', 1), ('#bus250', 1))
+B4: (('#nostalgia', 1), ('#ute', 1), ('#melbourne', 1), ('#10thingsihateaboutyou', 1), ('#aflfootyshow', 1))
+D4: (('#sherwynthefiltermaster', 1), ('#classiccars', 1), ('#while', 1), ('#husky', 1), ('#xfactorau', 1))
+C1: (('#alp', 1), ('#imnotinsanebut', 1), ('#fogz', 1), ('#husky', 1), ('#xfactorau', 1))
+C3: (('#springboks', 1), ('#oscarsredcarpet', 1), ('#interiordesign', 1), ('#alp', 1), ('#fifa', 1))
+A3: (('#casadadbruzzo', 1), ('#raw', 1), ('#mvfc', 1), ('#gonegirl', 1), ('#luongo', 1))
+D5: (('#channelingaliceinwonderland', 1), ('#bmmvstr', 1), ('#duststorm', 1), ('#raw', 1), ('#xfactorau', 1))
+C4: (('#nohewitt', 1), ('#imfreejerryandimlovingit', 1), ('#classiccars', 1), ('#alp', 1), ('#lashes', 1))
+B2: (('#oscarsredcarpet', 1), ('#springboks', 1), ('#interiordesign', 1), ('#alp', 1), ('#springcarnvial2015', 1))
+C5: (('#angel', 1), ('#weddingfilms', 1), ('#melbournegraff', 1), ('#raw', 1), ('#brewingsomething', 1))
+
+Execution Time: 658.0528275966644 s
