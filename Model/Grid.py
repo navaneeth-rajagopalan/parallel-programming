@@ -19,7 +19,7 @@ class Grid:
     
     def addHashTagInfo(self, hashTag):
         """ Add hash tag information to the grid. If a new hash tag is encountered create a new property with hash tag and set count to 1. If hashtag exists in grid, increment counter by 1 """
-        hashTag = "#" + hashTag.lower()
+        hashTag = hashTag.lower()
         if hashTag in self.hashTags:
             self.hashTags[hashTag] += 1
         else:

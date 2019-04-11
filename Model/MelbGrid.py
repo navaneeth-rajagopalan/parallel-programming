@@ -71,8 +71,9 @@ class MelbGrid:
         # Check the Doc section - Coordinates - doc.coordinates.coordinates
         if ("doc" in tweet) and (type(tweet["doc"]) == dict) and ("text" in tweet["doc"]) and (type(tweet["doc"]["text"]) == str):
             tweetText = tweet["doc"]["text"]
-            # https://www.hashtags.org/platforms/twitter/what-characters-can-a-hashtag-include/
-            hashtags = re.findall(r" #(\w+)", " " + tweetText) # Prepend a blank white space before the tweet text to filter " #Hashtag" scenarios as hashtags
+            if tweetText.startswith("#"):
+                tweetText = tweetText[1:] # to match the <space>#<string><space> scenario, since text starting with # do not satisy condition
+            hashtags = [phrase for phrase in tweetText.split() if phrase.startswith("#") ]
             return hashtags
         return []
 

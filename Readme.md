@@ -1,3 +1,8 @@
+COMP90024_2019_SM1 Assignment 1
+
+Navaneeth Rajagopalan
+Avinash Rao
+
 Instructions:
 1. In case not in master branch - checkout to the master branch using "git checkout master"
 2. cd to "TwitterFiles"
