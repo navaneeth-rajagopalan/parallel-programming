@@ -1,0 +1,287 @@
+Data place holders scattered
+Data place holders scattered
+Data place holders scattered
+Data place holders scattered
+Data place holders scattered
+Data place holders scattered
+Data place holders scattered
+Data place holders scattered
+Received Data
+
+Summary from processor #0
+A1: 304 posts
+A2: 534 posts
+A3: 625 posts
+A4: 38 posts
+B1: 2058 posts
+B2: 9908 posts
+B3: 3302 posts
+B4: 690 posts
+C1: 1040 posts
+C2: 18136 posts
+C3: 6626 posts
+C4: 2492 posts
+C5: 541 posts
+D3: 1690 posts
+D4: 1855 posts
+D5: 407 posts
+
+
+OTHERS: 262254 posts
+
+
+Total tweets in file: 312500
+
+Execution Time: 56.202728271484375 s
+
+########################################################################################################################################################
+
+
+Summary from processor #1
+A1: 322 posts
+A2: 505 posts
+A3: 655 posts
+A4: 26 posts
+B1: 2116 posts
+B2: 9860 posts
+B3: 3392 posts
+B4: 675 posts
+C1: 1080 posts
+C2: 18213 posts
+C3: 6647 posts
+C4: 2373 posts
+C5: 505 posts
+D3: 1680 posts
+D4: 1841 posts
+D5: 417 posts
+
+
+OTHERS: 262193 posts
+
+
+Total tweets in file: 312500
+
+Execution Time: 57.24731636047363 s
+
+########################################################################################################################################################
+
+
+Summary from processor #2
+A1: 323 posts
+A2: 522 posts
+A3: 662 posts
+A4: 36 posts
+B1: 2074 posts
+B2: 9982 posts
+B3: 3302 posts
+B4: 657 posts
+C1: 1050 posts
+C2: 18258 posts
+C3: 6692 posts
+C4: 2436 posts
+C5: 487 posts
+D3: 1616 posts
+D4: 1748 posts
+D5: 406 posts
+
+
+OTHERS: 262249 posts
+
+
+Total tweets in file: 312500
+
+Execution Time: 57.56402564048767 s
+
+########################################################################################################################################################
+
+
+Summary from processor #3
+A1: 329 posts
+A2: 521 posts
+A3: 637 posts
+A4: 41 posts
+B1: 2052 posts
+B2: 10048 posts
+B3: 3261 posts
+B4: 707 posts
+C1: 1026 posts
+C2: 18144 posts
+C3: 6602 posts
+C4: 2428 posts
+C5: 505 posts
+D3: 1759 posts
+D4: 1773 posts
+D5: 377 posts
+
+
+OTHERS: 262290 posts
+
+
+Total tweets in file: 312500
+
+Execution Time: 56.63938331604004 s
+
+########################################################################################################################################################
+
+
+Summary from processor #4
+A1: 327 posts
+A2: 515 posts
+A3: 616 posts
+A4: 53 posts
+B1: 2108 posts
+B2: 10015 posts
+B3: 3310 posts
+B4: 685 posts
+C1: 1030 posts
+C2: 18054 posts
+C3: 6692 posts
+C4: 2396 posts
+C5: 527 posts
+D3: 1639 posts
+D4: 1839 posts
+D5: 421 posts
+
+
+OTHERS: 262273 posts
+
+
+Total tweets in file: 312500
+
+Execution Time: 56.21272253990173 s
+
+########################################################################################################################################################
+
+
+Summary from processor #5
+A1: 334 posts
+A2: 527 posts
+A3: 582 posts
+A4: 33 posts
+B1: 1951 posts
+B2: 9886 posts
+B3: 3334 posts
+B4: 684 posts
+C1: 1067 posts
+C2: 18023 posts
+C3: 6870 posts
+C4: 2583 posts
+C5: 520 posts
+D3: 1689 posts
+D4: 1809 posts
+D5: 406 posts
+
+
+OTHERS: 262202 posts
+
+
+Total tweets in file: 312500
+
+Execution Time: 58.61829233169556 s
+
+########################################################################################################################################################
+
+
+Summary from processor #6
+A1: 302 posts
+A2: 528 posts
+A3: 630 posts
+A4: 38 posts
+B1: 2115 posts
+B2: 9964 posts
+B3: 3352 posts
+B4: 665 posts
+C1: 1055 posts
+C2: 18196 posts
+C3: 6563 posts
+C4: 2502 posts
+C5: 490 posts
+D3: 1619 posts
+D4: 1826 posts
+D5: 389 posts
+
+
+OTHERS: 262266 posts
+
+
+Total tweets in file: 312500
+
+Execution Time: 56.199403285980225 s
+
+########################################################################################################################################################
+
+
+Summary from processor #7
+A1: 292 posts
+A2: 513 posts
+A3: 629 posts
+A4: 45 posts
+B1: 2033 posts
+B2: 9970 posts
+B3: 3297 posts
+B4: 687 posts
+C1: 1079 posts
+C2: 18072 posts
+C3: 6607 posts
+C4: 2489 posts
+C5: 531 posts
+D3: 1696 posts
+D4: 1806 posts
+D5: 425 posts
+
+
+OTHERS: 262329 posts
+
+
+Total tweets in file: 312500
+
+Execution Time: 60.47864389419556 s
+
+########################################################################################################################################################
+
+C2: 145096 posts
+B2: 79633 posts
+C3: 53299 posts
+B3: 26550 posts
+C4: 19699 posts
+B1: 16507 posts
+D4: 14497 posts
+D3: 13388 posts
+C1: 8427 posts
+B4: 5450 posts
+A3: 5036 posts
+A2: 4165 posts
+C5: 4106 posts
+D5: 3248 posts
+A1: 2533 posts
+A4: 310 posts
+
+
+OTHERS: 2098056 posts
+
+
+Total tweets in file: 2500000
+
+
+C2: (('#melbourne', 10523), ('#australia', 1557), ('#job', 1473), ('#jobs', 1300), ('#hiring', 845))
+B2: (('#melbourne', 864), ('#auspol', 339), ('#victraffic', 239), ('#australia', 173), ('#nashsnewvideo', 123))
+C3: (('#melbourne', 510), ('#victraffic', 297), ('#auspol', 180), ('#australia', 151), ('#mkr', 137))
+B3: (('#melbourne', 179), ('#victraffic', 139), ('#auspol', 65), ('#australia', 62), ('#fitness', 55))
+C4: (('#auspol', 264), ('#savedallas', 157), ('#victraffic', 144), ('#vote5sos', 97), ('#alishas1million', 96))
+B1: (('#melbourne', 179), ('#', 122), ('#kca', 81), ('#vote5sos', 78), ('#victraffic', 72))
+D4: (('#nowplaying', 1730), ('#karishmatannacraze', 81), ('#victraffic', 79), ('#jobs', 40), ('#melbourne', 32))
+D3: (('#melbourne', 84), ('#victraffic', 63), ('#beach', 60), ('#1s', 35), ('#joesuggtofollowconniekirk', 31))
+C1: (('#jackfollowme', 104), ('#jackdm', 97), ('#camto4mill', 73), ('#christmasfollowparty', 62), ('#jamesyamm', 59), ('#mashnewvideo', 59))
+B4: (('#melbourne', 35), ('#smallzywelcomeshome5sos', 27), ('#vote5sos', 23), ('#vicfires', 21), ('#fire', 20), ('#livechatwithmirandasings', 20))
+A3: (('#vicfires', 19), ('#saveconstantine', 17), ('#socceroos', 11), ('#epping.', 11), ('#raw', 11), ('#girls', 11))
+A2: (('#krazykristmas', 167), ('#egsholidaygiveaway', 57), ('#rcl1milliongiveaway', 53), ('#vdaywithbeth', 37), ('#egholidaygiveaway', 31), ('#craigieburn.', 31))
+C5: (('#melbourne', 53), ('#victraffic', 31), ('#photo', 20), ('#australia', 17), ('#dandenongs', 14))
+D5: (('#somebodytocon', 27), ('#cat,', 25), ('#melbourne', 22), ('#lost', 20), ('#victraffic', 20))
+A1: (('#melbourne', 15), ('#bbau', 14), ('#tattoo', 11), ('#vobis', 11), ('#judo', 10))
+A4: (('#auspol', 7), ('#libspill', 5), ('#qldvotes', 4), ('#lnp', 4), ('#photo', 3), ('#birthday', 3), ('#vicfires', 3))
+
+Execution Time: 60.610044717788696 s
+
+real	1m0.804s
+user	7m41.160s
+sys	0m23.383s

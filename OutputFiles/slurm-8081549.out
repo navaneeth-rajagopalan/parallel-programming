@@ -1,0 +1,77 @@
+Data place holders scattered
+Received Data
+
+Summary from processor #0
+A1: 2533 posts
+A2: 4165 posts
+A3: 5036 posts
+A4: 310 posts
+B1: 16507 posts
+B2: 79633 posts
+B3: 26550 posts
+B4: 5450 posts
+C1: 8427 posts
+C2: 145096 posts
+C3: 53299 posts
+C4: 19699 posts
+C5: 4106 posts
+D3: 13388 posts
+D4: 14497 posts
+D5: 3248 posts
+
+
+OTHERS: 2098056 posts
+
+
+Total tweets in file: 2500000
+
+Execution Time: 205.22546792030334 s
+
+########################################################################################################################################################
+
+C2: 145096 posts
+B2: 79633 posts
+C3: 53299 posts
+B3: 26550 posts
+C4: 19699 posts
+B1: 16507 posts
+D4: 14497 posts
+D3: 13388 posts
+C1: 8427 posts
+B4: 5450 posts
+A3: 5036 posts
+A2: 4165 posts
+C5: 4106 posts
+D5: 3248 posts
+A1: 2533 posts
+A4: 310 posts
+
+
+OTHERS: 2098056 posts
+
+
+Total tweets in file: 2500000
+
+
+C2: (('#melbourne', 10523), ('#australia', 1557), ('#job', 1473), ('#jobs', 1300), ('#hiring', 845))
+B2: (('#melbourne', 864), ('#auspol', 339), ('#victraffic', 239), ('#australia', 173), ('#nashsnewvideo', 123))
+C3: (('#melbourne', 510), ('#victraffic', 297), ('#auspol', 180), ('#australia', 151), ('#mkr', 137))
+B3: (('#melbourne', 179), ('#victraffic', 139), ('#auspol', 65), ('#australia', 62), ('#fitness', 55))
+C4: (('#auspol', 264), ('#savedallas', 157), ('#victraffic', 144), ('#vote5sos', 97), ('#alishas1million', 96))
+B1: (('#melbourne', 179), ('#', 122), ('#kca', 81), ('#vote5sos', 78), ('#victraffic', 72))
+D4: (('#nowplaying', 1730), ('#karishmatannacraze', 81), ('#victraffic', 79), ('#jobs', 40), ('#melbourne', 32))
+D3: (('#melbourne', 84), ('#victraffic', 63), ('#beach', 60), ('#1s', 35), ('#joesuggtofollowconniekirk', 31))
+C1: (('#jackfollowme', 104), ('#jackdm', 97), ('#camto4mill', 73), ('#christmasfollowparty', 62), ('#jamesyamm', 59), ('#mashnewvideo', 59))
+B4: (('#melbourne', 35), ('#smallzywelcomeshome5sos', 27), ('#vote5sos', 23), ('#vicfires', 21), ('#fire', 20), ('#livechatwithmirandasings', 20))
+A3: (('#vicfires', 19), ('#saveconstantine', 17), ('#raw', 11), ('#socceroos', 11), ('#epping.', 11), ('#girls', 11))
+A2: (('#krazykristmas', 167), ('#egsholidaygiveaway', 57), ('#rcl1milliongiveaway', 53), ('#vdaywithbeth', 37), ('#egholidaygiveaway', 31), ('#craigieburn.', 31))
+C5: (('#melbourne', 53), ('#victraffic', 31), ('#photo', 20), ('#australia', 17), ('#dandenongs', 14))
+D5: (('#somebodytocon', 27), ('#cat,', 25), ('#melbourne', 22), ('#lost', 20), ('#victraffic', 20))
+A1: (('#melbourne', 15), ('#bbau', 14), ('#vobis', 11), ('#tattoo', 11), ('#judo', 10))
+A4: (('#auspol', 7), ('#libspill', 5), ('#lnp', 4), ('#qldvotes', 4), ('#birthday', 3), ('#vicfires', 3), ('#photo', 3))
+
+Execution Time: 205.3732726573944 s
+
+real	3m25.718s
+user	3m19.394s
+sys	0m6.000s
